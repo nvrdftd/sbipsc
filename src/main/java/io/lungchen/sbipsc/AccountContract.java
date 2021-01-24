@@ -104,6 +104,11 @@ public class AccountContract implements ContractInterface {
             throw new ChaincodeException(errMsg);
         }
 
+        if (amount <= 0.0) {
+            String errMsg = String.format("Amount cannot be zero or negative.");
+            throw new ChaincodeException(errMsg);
+        }
+
         ChaincodeStub stub = ctx.getStub();
 
         String fromStr = stub.getStringState(fromAccountId);
